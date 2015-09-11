@@ -47,7 +47,7 @@ directory. All dependencies listed there will be installed.
 
 How to execute one off django commands like `makemigrations`:
 
-    docker run --rm -v "src:/usr/django/app" alang/django python manage.py makemigrations
+    docker run --rm -v "src:/usr/django/app" alang/django python app/manage.py makemigrations
 
 ## Advanced Configuration
 

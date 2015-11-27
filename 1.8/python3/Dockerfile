@@ -2,8 +2,8 @@ FROM python:3
 
 EXPOSE 8000
 
-ENV GUNICORN_VERSION=19.3.0
-ENV DJANGO_VERSION=1.8.6
+ENV GUNICORN_VERSION=19.4.1
+ENV DJANGO_VERSION=1.8.7
 ENV PYTZ_VERSION=2015.7
 
 # create directory which can be a place for generated static content

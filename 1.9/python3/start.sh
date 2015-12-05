@@ -6,7 +6,7 @@ cd app
 
 # run django setup commands if enabled
 if [ "$DJANGO_MIGRATE" == "true" ]; then
-    python manage.py manage.py migrate --noinput
+    python manage.py migrate --noinput
 fi
 if [ "$DJANGO_COLLECTSTATIC" == "true" ]; then
     python manage.py collectstatic --noinput

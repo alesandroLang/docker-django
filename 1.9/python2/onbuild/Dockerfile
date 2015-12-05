@@ -1,4 +1,4 @@
-FROM alang/django:1.8-python2
+FROM alang/django:1.9-python2
 
 # add application source code
 ONBUILD COPY src /usr/django/app

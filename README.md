@@ -1,5 +1,9 @@
 # Supported tags
--   latest, 1.8-python3
+-   latest, 1.9-python3
+-   1.9-python3-onbuild
+-   1.9-python2
+-   1.9-python2-onbuild
+-   1.8-python3
 -   1.8-python3-onbuild
 -   1.8-python2
 -   1.8-python2-onbuild
@@ -10,7 +14,7 @@ It uses [gunicorn](http://gunicorn.org/) in the latest version to serve the wsgi
 The container picks up the wsgi entry point based on the environment variable `DJANGO_APP`.
 
 Django is already installed within the version specified by the image.
-For example `1.8-python3` will contain the latest django version of `1.8.x`.
+For example `1.9-python3` will contain the latest django version of `1.9.x`.
 The image does also ship with the latest version of `pytz` installed.
 
 The image does export port `8000`.

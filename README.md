@@ -1,5 +1,9 @@
 # Supported tags
--   latest, 1.9-python3
+-   latest, 1.10-python3
+-   1.10-python3-onbuild
+-   1.10-python2
+-   1.10-python2-onbuild
+-   1.9-python3
 -   1.9-python3-onbuild
 -   1.9-python2
 -   1.9-python2-onbuild
@@ -67,3 +71,4 @@ If you have any problems with or questions about this image, please contact me t
 ## Contributing
 You are invited to contribute new features, fixes, or updates, large or small.
 Please send me a pull request.
+

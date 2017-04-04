@@ -2,9 +2,9 @@ FROM python:2
 
 EXPOSE 8000
 
-ENV GUNICORN_VERSION=19.6.0
-ENV DJANGO_VERSION=1.9.12
-ENV PYTZ_VERSION=2016.7
+ENV GUNICORN_VERSION=19.7.1
+ENV DJANGO_VERSION=1.9.13
+ENV PYTZ_VERSION=2017.2
 
 # create directory which can be a place for generated static content
 # volume can be used to serve these files with a webserver

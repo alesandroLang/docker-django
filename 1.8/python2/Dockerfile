@@ -4,7 +4,7 @@ EXPOSE 8000
 
 ENV GUNICORN_VERSION=19.7.1
 ENV DJANGO_VERSION=1.8.18
-ENV PYTZ_VERSION=2017.2
+ENV PYTZ_VERSION=2017.3
 
 # create directory which can be a place for generated static content
 # volume can be used to serve these files with a webserver

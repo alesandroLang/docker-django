@@ -1,4 +1,4 @@
-FROM alang/django:1.10-python2
+FROM alang/django:2.0-python3
 
 # add application source code
 ONBUILD COPY src /usr/django/app

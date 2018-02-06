@@ -1,9 +1,9 @@
-FROM python:2
+FROM python:3
 
 EXPOSE 8000
 
 ENV GUNICORN_VERSION=19.7.1
-ENV DJANGO_VERSION=1.8.18
+ENV DJANGO_VERSION=2.0.2
 ENV PYTZ_VERSION=2017.3
 
 # create directory which can be a place for generated static content

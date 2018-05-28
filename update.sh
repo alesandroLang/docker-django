@@ -35,9 +35,8 @@ replacePythonVersionWithinTemplate() {
 }
 
 getPyPiPackageVersions() {
-    curl --silent "https://pypi.python.org/pypi/$1/json" \
-    | grep '^        "[0-9].*\[$' \
-    | cut -d '"' -f2 \
+    curl --silent "https://pypi.org/pypi/$1/json" \
+    | jq  -r '.releases | keys | .[]' \
     | grep -vE '[0-9]([a-z]|rc)[0-9]' \
     | sort --version-sort
 }

@@ -35,7 +35,7 @@ be executing on container start:
 
     FROM alang/django
     ENV DJANGO_APP=demo                # will start /usr/django/app/demo/wsgi.py
-    COPY django_source /usr/django/app
+    COPY src /usr/django/app
 
 ## Using the onbuild image
 
@@ -45,11 +45,17 @@ code is. This directory will be copied to `/usr/django/app`.
 The image does also assume that your source code contains a `requirements.txt` file in the `src`
 directory. All dependencies listed there will be installed.
 
+## Create new django project
+
+Bootstrap a new project called `demo` within the `src` folder:
+
+    docker run --rm -v "$PWD/src:/usr/django/app" alang/django django-admin startproject demo app
+
 ## Executing one off commands
 
 How to execute one off django commands like `makemigrations`:
 
-    docker run --rm -v "src:/usr/django/app" alang/django python app/manage.py makemigrations
+    docker run --rm -v "$PWD/src:/usr/django/app" alang/django python app/manage.py makemigrations
 
 ## Advanced Configuration
 

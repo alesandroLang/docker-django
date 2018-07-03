@@ -14,6 +14,7 @@ The container picks up the wsgi entry point based on the environment variable `D
 Django is already installed within the version specified by the image.
 For example `2.0-python3` will contain the latest django version of `2.0.x`.
 The image does also ship with the latest version of `pytz` installed.
+Using the latest supported python version for the corresponding django release.
 
 The image does export port `8000`.
 

@@ -27,11 +27,14 @@ replaceImageVersionWithinTemplate() {
 
 replacePythonVersionWithinTemplate() {
     if [[ $1 == 1.* ]]; then
-        sed -i '' "s/{{PYTHON_VERSION}}/2/g" $1/python2/Dockerfile
+        sed -i '' "s/{{PYTHON_VERSION}}/2.7/g" $1/python2/Dockerfile
         sed -i '' "s/{{PYTHON_VERSION}}/2/g" $1/python2/onbuild/Dockerfile
+        sed -i '' "s/{{PYTHON_VERSION}}/3.6/g" $1/python3/Dockerfile
+        sed -i '' "s/{{PYTHON_VERSION}}/3/g" $1/python3/onbuild/Dockerfile
+    else
+        sed -i '' "s/{{PYTHON_VERSION}}/3.6/g" $1/python3/Dockerfile
+        sed -i '' "s/{{PYTHON_VERSION}}/3/g" $1/python3/onbuild/Dockerfile
     fi
-    sed -i '' "s/{{PYTHON_VERSION}}/3/g" $1/python3/Dockerfile
-    sed -i '' "s/{{PYTHON_VERSION}}/3/g" $1/python3/onbuild/Dockerfile
 }
 
 getPyPiPackageVersions() {

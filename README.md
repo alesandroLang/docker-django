@@ -22,7 +22,7 @@ It has a volume defined to generate static resources at `/var/www/static`.
 The volume `/usr/django/app` can be used for live reload during development.
 
 The environment variable `GUNICORN_RELOAD` can be set to `true` to active live reload if a source file
-does change.
+does change. For running gunicorn the linux user `django` will be used.
 
 If the following environment variables are set to `true` the corresponding django command will
 be executing on container start:

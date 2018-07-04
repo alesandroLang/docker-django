@@ -2,10 +2,6 @@ FROM python:3.7
 
 EXPOSE 8000
 
-ENV GUNICORN_VERSION=19.9.0
-ENV DJANGO_VERSION=2.0.7
-ENV PYTZ_VERSION=2018.5
-
 # create directory which can be a place for generated static content
 # volume can be used to serve these files with a webserver
 RUN mkdir -p /var/www/static
@@ -16,11 +12,17 @@ VOLUME /var/www/static
 RUN mkdir -p /usr/django/app
 VOLUME /usr/django/app
 
+# create user which will be used to run gunicorn
+RUN groupadd -r django && useradd --no-log-init -r -g django django
+
 # add gunicorn config
 RUN mkdir -p /etc/gunicorn
 COPY gunicorn.conf /etc/gunicorn/
 
 # install gunicorn, django and pytz
+ENV GUNICORN_VERSION=19.9.0
+ENV DJANGO_VERSION=2.0.7
+ENV PYTZ_VERSION=2018.5
 RUN pip install gunicorn==$GUNICORN_VERSION
 RUN pip install django==$DJANGO_VERSION
 RUN pip install pytz==$PYTZ_VERSION

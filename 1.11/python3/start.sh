@@ -17,7 +17,7 @@ fi
 
 # start gunicorn
 if [ "$GUNICORN_RELOAD" == "true" ]; then
-    gunicorn -c /etc/gunicorn/gunicorn.conf --reload ${DJANGO_APP}.wsgi
+    gunicorn -c /etc/gunicorn/gunicorn.conf --bind 0.0.0.0:${PORT} --reload ${DJANGO_APP}.wsgi
 else
-    gunicorn -c /etc/gunicorn/gunicorn.conf ${DJANGO_APP}.wsgi
+    gunicorn -c /etc/gunicorn/gunicorn.conf --bind 0.0.0.0:${PORT} ${DJANGO_APP}.wsgi
 fi

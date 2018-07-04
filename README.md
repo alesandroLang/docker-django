@@ -9,14 +9,14 @@
 # About this image
 This image can be used as a starting point to run django applications.
 It uses [gunicorn](http://gunicorn.org/) in the latest version to serve the wsgi application.
+
 The container picks up the wsgi entry point based on the environment variable `DJANGO_APP`.
+Gunicorn uses the port defined by the environment variable `PORT` (default port is `8000`).
 
 Django is already installed within the version specified by the image.
 For example `2.0-python3` will contain the latest django version of `2.0.x`.
 The image does also ship with the latest version of `pytz` installed.
 Using the latest supported python version for the corresponding django release.
-
-The image does export port `8000`.
 
 It has a volume defined to generate static resources at `/var/www/static`.
 The volume `/usr/django/app` can be used for live reload during development.

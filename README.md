@@ -8,10 +8,12 @@
 
 # About this image
 This image can be used as a starting point to run django applications.
-It uses [gunicorn](http://gunicorn.org/) in the latest version to serve the wsgi application.
 
+It uses [gunicorn](http://gunicorn.org/) in the latest version to serve the wsgi application.
 The container picks up the wsgi entry point based on the environment variable `DJANGO_APP`.
 Gunicorn uses the port defined by the environment variable `PORT` (default port is `8000`).
+The environment variable `GUNICORN_RELOAD` can be set to `true` to active live reload if a source file
+does change. For running gunicorn the linux user `django` will be used.
 
 Django is already installed within the version specified by the image.
 For example `2.0-python3` will contain the latest django version of `2.0.x`.
@@ -21,14 +23,14 @@ Using the latest supported python version for the corresponding django release.
 It has a volume defined to generate static resources at `/var/www/static`.
 The volume `/usr/django/app` can be used for live reload during development.
 
-The environment variable `GUNICORN_RELOAD` can be set to `true` to active live reload if a source file
-does change. For running gunicorn the linux user `django` will be used.
+To execute django management commands like for example `collectstatic` the environment variable `DJANGO_MANAGEMENT_ON_START` can
+be set to a semicolon separated list of commands (e.g. `migrate --noinput;collectstatic --noinput`). These commands will be
+executed in the specified order before django will be started. This docker image can also be used to execute certain management
+commands without starting django afterwards. This is useful if you are running multiple django containers and want to schedule a
+job only once. Therefore use the environment variable `DJANGO_MANAGEMENT_JOB`.
 
-If the following environment variables are set to `true` the corresponding django command will
-be executing on container start:
-- `DJANGO_MIGRATE`
-- `DJANGO_COLLECTSTATIC`
-- `DJANGO_COMPRESS`
+*The environment variables `DJANGO_MIGRATE`, `DJANGO_COLLECTSTATIC` and `DJANGO_COMPRESS` are deprecated, please migrate to
+`DJANGO_MANAGEMENT_ON_START`.*
 
 # How to use this image
 
@@ -56,7 +58,7 @@ Bootstrap a new project called `demo` within the `src` folder:
 
 How to execute one off django commands like `makemigrations`:
 
-    docker run --rm -v "$PWD/src:/usr/django/app" alang/django python app/manage.py makemigrations
+    docker run --rm -v "$PWD/src:/usr/django/app" -e DJANGO_MANAGEMENT_JOB=makemigrations alang/django
 
 ## Advanced Configuration
 

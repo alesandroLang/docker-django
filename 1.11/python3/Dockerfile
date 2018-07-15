@@ -25,6 +25,9 @@ COPY start.sh /usr/django/
 WORKDIR /usr/django
 CMD bash start.sh
 
+# install gettext
+RUN apt-get update -yqq && apt-get install -y gettext
+
 # install gunicorn, django and pytz
 ENV GUNICORN_VERSION=19.9.0
 ENV DJANGO_VERSION=1.11.14

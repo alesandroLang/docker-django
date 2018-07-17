@@ -10,9 +10,6 @@ VOLUME /var/www/static
 RUN mkdir -p /usr/django/app
 VOLUME /usr/django/app
 
-# create user which will be used to run gunicorn
-RUN groupadd -r django && useradd --no-log-init -r -g django django
-
 # set default port for gunicorn
 ENV PORT=8000
 

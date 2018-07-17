@@ -13,7 +13,7 @@ It uses [gunicorn](http://gunicorn.org/) in the latest version to serve the wsgi
 The container picks up the wsgi entry point based on the environment variable `DJANGO_APP`.
 Gunicorn uses the port defined by the environment variable `PORT` (default port is `8000`).
 The environment variable `GUNICORN_RELOAD` can be set to `true` to active live reload if a source file
-does change. For running gunicorn the linux user `django` will be used.
+does change.
 
 Django is already installed within the version specified by the image.
 For example `2.0-python3` will contain the latest django version of `2.0.x`.

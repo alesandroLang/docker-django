@@ -7,7 +7,8 @@ IMAGE='alang/django'
 VERSIONS=()
 VERSIONS+=('1.11')
 VERSIONS+=('2.0')
-LATEST='2.0-python3'
+VERSIONS+=('2.1')
+LATEST='2.1-python3'
 
 buildImageByTagAndPath(){
     local TAG="$IMAGE:$1"

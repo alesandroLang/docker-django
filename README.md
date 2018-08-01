@@ -1,5 +1,7 @@
 # Supported tags
--   latest, 2.0-python3
+-   latest, 2.1-python3
+-   2.1-python3-onbuild
+-   2.0-python3
 -   2.0-python3-onbuild
 -   1.11-python3
 -   1.11-python3-onbuild

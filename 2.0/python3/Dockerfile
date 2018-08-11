@@ -18,9 +18,10 @@ RUN mkdir -p /etc/gunicorn
 COPY gunicorn.conf /etc/gunicorn/
 
 # run start.sh on container start
-COPY start.sh /usr/django/
 WORKDIR /usr/django
-CMD bash start.sh
+COPY start.sh /usr/django/
+RUN chmod +x start.sh
+CMD ./start.sh
 
 # install gettext
 RUN apt-get update -yqq && apt-get install -y gettext

@@ -22,7 +22,7 @@ For example `2.0-python3` will contain the latest django version of `2.0.x`.
 The image does also ship with the latest version of `pytz` and `gettext` installed.
 Using the latest supported python version for the corresponding django release.
 
-It has a volume defined to generate static resources at `/var/www/static`.
+It has volumes defined for generated static and user-uploaded files (`/var/www/static` and `/var/www/media`).
 The volume `/usr/django/app` can be used for live reload during development.
 
 To execute django management commands like for example `collectstatic` the environment variable `DJANGO_MANAGEMENT_ON_START` can

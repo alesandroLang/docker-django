@@ -5,6 +5,11 @@ FROM python:{{PYTHON_VERSION}}
 RUN mkdir -p /var/www/static
 VOLUME /var/www/static
 
+# create directory which can be a place for user-uploaded files
+# volume can be used to serve these files with a webserver
+RUN mkdir -p /var/www/media
+VOLUME /var/www/media
+
 # create directory for application source code
 # volume can be used for live-reload during development
 RUN mkdir -p /usr/django/app

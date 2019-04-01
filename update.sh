@@ -4,8 +4,8 @@ set -euo pipefail
 
 VERSIONS=()
 VERSIONS+=('1.11')
-VERSIONS+=('2.0')
 VERSIONS+=('2.1')
+VERSIONS+=('2.2')
 
 copyTemplateCodeByVersion() {
     rm -rf $1

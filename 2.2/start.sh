@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# change into app directory (start.sh can not be there because of volume)
+# change into app directory (start.sh cannot be there because this would be inside the volume)
 cd app
 
 # set internal field separator to split commands
@@ -46,7 +46,7 @@ fi
 # start gunicorn
 echo "starting gunicorn (PORT=${PORT}, RELOAD=${GUNICORN_RELOAD:-false}, APP=${DJANGO_APP})"
 if [ "$GUNICORN_RELOAD" == "true" ]; then
-    gunicorn -c /etc/gunicorn/gunicorn.conf --bind 0.0.0.0:${PORT} --reload ${DJANGO_APP}.wsgi
+    gunicorn -c /etc/gunicorn/gunicorn.conf.py --bind 0.0.0.0:${PORT} --reload ${DJANGO_APP}.wsgi
 else
-    gunicorn -c /etc/gunicorn/gunicorn.conf --bind 0.0.0.0:${PORT} ${DJANGO_APP}.wsgi
+    gunicorn -c /etc/gunicorn/gunicorn.conf.py --bind 0.0.0.0:${PORT} ${DJANGO_APP}.wsgi
 fi

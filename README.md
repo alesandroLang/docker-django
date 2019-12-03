@@ -1,12 +1,6 @@
 # Supported tags
--   latest, 2.2-python3
--   2.2-python3-onbuild
--   2.1-python3
--   2.1-python3-onbuild
--   1.11-python3
--   1.11-python3-onbuild
--   1.11-python2
--   1.11-python2-onbuild
+-   latest, 3.0
+-   2.2
 
 # About this image
 This image can be used as a starting point to run django applications.
@@ -18,7 +12,7 @@ The environment variable `GUNICORN_RELOAD` can be set to `true` to active live r
 does change.
 
 Django is already installed within the version specified by the image.
-For example `2.0-python3` will contain the latest django version of `2.0.x`.
+For example `3.0` will contain the latest django version of `3.0.x`.
 The image does also ship with the latest version of `pytz` and `gettext` installed.
 Using the latest supported python version for the corresponding django release.
 
@@ -41,14 +35,6 @@ job only once. Therefore use the environment variable `DJANGO_MANAGEMENT_JOB`.
     FROM alang/django
     ENV DJANGO_APP=demo                # will start /usr/django/app/demo/wsgi.py
     COPY src /usr/django/app
-
-## Using the onbuild image
-
-The `-onbuild` variant of the image does assume that your build directory (directory where the
-Dockerfile is located) contains a directory called `src` which is the place where the django source
-code is. This directory will be copied to `/usr/django/app`.
-The image does also assume that your source code contains a `requirements.txt` file in the `src`
-directory. All dependencies listed there will be installed.
 
 ## Create new django project
 

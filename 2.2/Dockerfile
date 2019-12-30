@@ -33,7 +33,7 @@ RUN apt-get update -yqq && apt-get install -y gettext
 
 # install gunicorn, django and pytz
 ENV GUNICORN_VERSION=20.0.4
-ENV DJANGO_VERSION=2.2.8
+ENV DJANGO_VERSION=2.2.9
 ENV PYTZ_VERSION=2019.3
 RUN pip install gunicorn==$GUNICORN_VERSION
 RUN pip install django==$DJANGO_VERSION

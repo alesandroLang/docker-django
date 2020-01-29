@@ -28,8 +28,8 @@ COPY start.sh /usr/django/
 RUN chmod +x start.sh
 CMD ./start.sh
 
-# install gettext
-RUN apt-get update -yqq && apt-get install -y gettext
+# install gettext and bash (required by start.sh)
+RUN apk add --no-cache gettext bash
 
 # install gunicorn, django and pytz
 ENV GUNICORN_VERSION={{GUNICORN_VERSION}}

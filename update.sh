@@ -13,7 +13,7 @@ copyTemplateCodeByVersion() {
 }
 
 replacePythonVersionWithinTemplate() {
-  local PYTHON_VERSION='3.8'
+  local PYTHON_VERSION='3.8-alpine'
 
   echo "  using python ${PYTHON_VERSION}"
 

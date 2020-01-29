@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.8-alpine
 
 # create the directory which can be a place for generated static content
 # volume can be used to serve these files with a webserver
@@ -28,8 +28,8 @@ COPY start.sh /usr/django/
 RUN chmod +x start.sh
 CMD ./start.sh
 
-# install gettext
-RUN apt-get update -yqq && apt-get install -y gettext
+# install gettext and bash (required by start.sh)
+RUN apk add --no-cache gettext bash
 
 # install gunicorn, django and pytz
 ENV GUNICORN_VERSION=20.0.4

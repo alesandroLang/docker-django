@@ -54,6 +54,15 @@ A custom gunicorn config can be included:
 
     COPY gunicorn.conf /etc/gunicorn/
 
+## Install System Packages
+
+The image is based on [Alpine Linux](https://alpinelinux.org/).
+
+Therefore `apk` must be used to install additional packages:
+
+    # install system packages required by psycopg2
+    RUN apk add --no-cache gcc postgresql-dev musl-dev
+
 # User Feedback
 
 ## Issues

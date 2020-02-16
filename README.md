@@ -8,8 +8,7 @@ This image can be used as a starting point to run django applications.
 It uses [gunicorn](http://gunicorn.org/) in the latest version to serve the wsgi application.
 The container picks up the wsgi entry point based on the environment variable `DJANGO_APP`.
 Gunicorn uses the port defined by the environment variable `PORT` (default port is `8000`).
-The environment variable `GUNICORN_RELOAD` can be set to `true` to active live reload if a source file
-does change.
+The environment variable `GUNICORN_RELOAD` can be set to `true` to active live reload if a source file does change.
 
 Django is already installed within the version specified by the image.
 For example `3.0` will contain the latest django version of `3.0.x`.
@@ -25,8 +24,8 @@ executed in the specified order before django will be started. This docker image
 commands without starting django afterwards. This is useful if you are running multiple django containers and want to schedule a
 job only once. Therefore use the environment variable `DJANGO_MANAGEMENT_JOB`.
 
-*The environment variables `DJANGO_MIGRATE`, `DJANGO_COLLECTSTATIC` and `DJANGO_COMPRESS` are deprecated, please migrate to
-`DJANGO_MANAGEMENT_ON_START`.*
+Gunicorn starts with the non-root user `gunicorn`.
+This user is member of the `root` group for OpenShift compatibility.
 
 # How to use this image
 
@@ -48,7 +47,7 @@ How to execute one off django commands like `makemigrations`:
 
     docker run --rm -v "$PWD/src:/usr/django/app" -e DJANGO_MANAGEMENT_JOB=makemigrations alang/django
 
-## Advanced Configuration
+## Gunicorn Configuration
 
 A custom gunicorn config can be included:
 
@@ -61,7 +60,9 @@ The image is based on [Alpine Linux](https://alpinelinux.org/).
 Therefore `apk` must be used to install additional packages:
 
     # install system packages required by psycopg2
+    USER root
     RUN apk add --no-cache gcc postgresql-dev musl-dev
+    USER $GUNICORN_USER_UID
 
 # User Feedback
 

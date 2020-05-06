@@ -72,3 +72,8 @@ If you have any problems with or questions about this image, please contact me t
 ## Contributing
 You are invited to contribute new features, fixes, or updates, large or small.
 Please send me a pull request.
+
+# CI
+
+This image uses the **automated build** feature of Docker Hub.
+The image will be build on push to master and stored within the [official docker registry](https://hub.docker.com/r/alang/django).

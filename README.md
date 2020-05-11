@@ -75,5 +75,7 @@ Please send me a pull request.
 
 # CI
 
-This image uses the **automated build** feature of Docker Hub.
-The image will be build on push to master and stored within the [official docker registry](https://hub.docker.com/r/alang/django).
+- This image uses the automated build feature of Docker Hub.
+  The image will be build on push to master and stored within the [official docker registry](https://hub.docker.com/r/alang/django).
+
+- A GitHub Action is used to create pull requests whenever a new version of Django, Gunicorn or pytz is available.

@@ -1,0 +1,20 @@
+name: auto-update
+
+on:
+  schedule:
+    # Once a day, when doesn't matter, let's be nice and not do it at 00:00 like everybody else does.
+    - cron: '44 4 * * *'
+
+jobs:
+  create-pull-request-for-updated-dockerfiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: update_dockerfiles
+        run: ./update.sh
+      - name: create_pull_request
+        uses: peter-evans/create-pull-request@v2
+        with:
+          title: auto-update
+          body: updated Django, Gunicorn or pytz version
+          commit-message: updated Django, Gunicorn or pytz version

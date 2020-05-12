@@ -44,8 +44,8 @@ RUN apk add --no-cache gettext bash
 
 # install gunicorn, django and pytz
 ENV GUNICORN_VERSION=20.0.4
-ENV DJANGO_VERSION=3.0.5
-ENV PYTZ_VERSION=2019.3
+ENV DJANGO_VERSION=3.0.6
+ENV PYTZ_VERSION=2020.1
 RUN pip install gunicorn==$GUNICORN_VERSION
 RUN pip install django==$DJANGO_VERSION
 RUN pip install pytz==$PYTZ_VERSION

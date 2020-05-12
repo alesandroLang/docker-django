@@ -17,7 +17,8 @@ replacePythonVersionWithinTemplate() {
 
   echo "  using python ${PYTHON_VERSION}"
 
-  sed -i '' "s/{{PYTHON_VERSION}}/${PYTHON_VERSION}/g" "$1/Dockerfile"
+  sed "s/{{PYTHON_VERSION}}/${PYTHON_VERSION}/g" "$1/Dockerfile" > "$1/Dockerfile.tmp"
+  mv "$1/Dockerfile.tmp" "$1/Dockerfile"
 }
 
 getPyPiPackageVersions() {
@@ -33,7 +34,8 @@ replaceGunicornVersionWithinTemplate() {
 
   echo "  using gunicorn ${GUNICORN_VERSION}"
 
-  sed -i '' "s/{{GUNICORN_VERSION}}/${GUNICORN_VERSION}/g" "$1/Dockerfile"
+  sed "s/{{GUNICORN_VERSION}}/${GUNICORN_VERSION}/g" "$1/Dockerfile" > "$1/Dockerfile.tmp"
+  mv "$1/Dockerfile.tmp" "$1/Dockerfile"
 }
 
 replaceDjangoVersionWithinTemplate() {
@@ -42,7 +44,8 @@ replaceDjangoVersionWithinTemplate() {
 
   echo "  using django ${DJANGO_VERSION}"
 
-  sed -i '' "s/{{DJANGO_VERSION}}/${DJANGO_VERSION}/g" "$1/Dockerfile"
+  sed "s/{{DJANGO_VERSION}}/${DJANGO_VERSION}/g" "$1/Dockerfile" > "$1/Dockerfile.tmp"
+  mv "$1/Dockerfile.tmp" "$1/Dockerfile"
 }
 
 replacePytzVersionWithinTemplate() {
@@ -51,7 +54,8 @@ replacePytzVersionWithinTemplate() {
 
   echo "  using pytz ${PYTZ_VERSION}"
 
-  sed -i '' "s/{{PYTZ_VERSION}}/${PYTZ_VERSION}/g" "$1/Dockerfile"
+  sed "s/{{PYTZ_VERSION}}/${PYTZ_VERSION}/g" "$1/Dockerfile" > "$1/Dockerfile.tmp"
+  mv "$1/Dockerfile.tmp" "$1/Dockerfile"
 }
 
 updateImageByVersion() {

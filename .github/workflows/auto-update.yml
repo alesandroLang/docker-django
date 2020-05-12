@@ -3,7 +3,7 @@ name: auto-update
 on:
   schedule:
     # Once a day, when doesn't matter, let's be nice and not do it at 00:00 like everybody else does.
-    - cron: '44 4 * * *'
+    - cron: '22 2 * * *'
 
 jobs:
   create-pull-request-for-updated-dockerfiles:

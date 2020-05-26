@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# change into app directory (start.sh cannot be there because this would be inside the volume)
+# change into app directory (start.sh cannot be there because this could be inside the volume)
 cd app
 
 # set internal field separator to split commands

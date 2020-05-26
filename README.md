@@ -15,8 +15,8 @@ For example `3.0` will contain the latest django version of `3.0.x`.
 The image does also ship with the latest version of `pytz` and `gettext` installed.
 Using the latest supported python version for the corresponding django release.
 
-It has volumes defined for generated static and user-uploaded files (`/var/www/static` and `/var/www/media`).
-The volume `/usr/django/app` can be used for live reload during development.
+You can use volumes to access generated static and user-uploaded files (`/var/www/static` and `/var/www/media`).
+Create a volume for `/usr/django/app` for live reload during development.
 
 To execute django management commands like for example `collectstatic` the environment variable `DJANGO_MANAGEMENT_ON_START` can
 be set to a semicolon separated list of commands (e.g. `migrate --noinput;collectstatic --noinput`). These commands will be

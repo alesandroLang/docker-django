@@ -21,9 +21,14 @@ ENV WORKDIR=/usr/django
 RUN mkdir -p $WORKDIR
 WORKDIR $WORKDIR
 
+# install tini to ensure that gunicorn processes will receive signals
+# install gettext and bash (required by start.sh)
+RUN apk add --no-cache tini gettext bash
+
 # run start.sh on container start
 COPY start.sh $WORKDIR
-CMD ./start.sh
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["./start.sh"]
 
 # create directories for generated static content, user-uploaded files and application source code
 ENV STATIC_ROOT=/var/www/static
@@ -35,9 +40,6 @@ RUN mkdir -p $STATIC_ROOT $MEDIA_ROOT $SOURCE_ROOT
 RUN chown -R $GUNICORN_USER_NAME $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $MEDIA_ROOT && \
   chgrp -R $GUNICORN_USER_GROUP $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $MEDIA_ROOT && \
   chmod -R 770 $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $MEDIA_ROOT
-
-# install gettext and bash (required by start.sh)
-RUN apk add --no-cache gettext bash
 
 # install gunicorn, django and pytz
 ENV GUNICORN_VERSION=20.0.4

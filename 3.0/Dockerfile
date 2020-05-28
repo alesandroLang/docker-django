@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.8-alpine3.11
 
 # add gunicorn user
 # -D = Don't assign a password

@@ -2,9 +2,7 @@
 
 set -euo pipefail
 
-VERSIONS=()
-VERSIONS+=('2.2')
-VERSIONS+=('3.0')
+source variables.sh
 
 copyTemplateCodeByVersion() {
   rm -rf "$1"
@@ -12,12 +10,10 @@ copyTemplateCodeByVersion() {
   cp -R template/* "$1"
 }
 
-replacePythonVersionWithinTemplate() {
-  local PYTHON_VERSION='3.8-alpine3.11'
+replaceBaseImageWithinTemplate() {
+  echo "  using base image ${BASE_IMAGE}"
 
-  echo "  using python ${PYTHON_VERSION}"
-
-  sed "s/{{PYTHON_VERSION}}/${PYTHON_VERSION}/g" "$1/Dockerfile" > "$1/Dockerfile.tmp"
+  sed "s/{{BASE_IMAGE}}/${BASE_IMAGE}/g" "$1/Dockerfile" > "$1/Dockerfile.tmp"
   mv "$1/Dockerfile.tmp" "$1/Dockerfile"
 }
 
@@ -61,13 +57,12 @@ replacePytzVersionWithinTemplate() {
 updateImageByVersion() {
   echo "updating image $1"
   copyTemplateCodeByVersion "$1"
-  replacePythonVersionWithinTemplate "$1"
+  replaceBaseImageWithinTemplate "$1"
   replaceGunicornVersionWithinTemplate "$1"
   replaceDjangoVersionWithinTemplate "$1"
   replacePytzVersionWithinTemplate "$1"
 }
 
-for INDEX in "${!VERSIONS[@]}"; do
-  VERSION=${VERSIONS[$INDEX]}
+for VERSION in "${VERSIONS[@]}"; do
   updateImageByVersion "${VERSION}"
 done

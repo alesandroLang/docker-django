@@ -2,12 +2,9 @@
 
 set -euo pipefail
 
-IMAGE='alang/django'
+source variables.sh
 
-VERSIONS=()
-VERSIONS+=('2.2')
-VERSIONS+=('3.0')
-LATEST='3.0'
+IMAGE='alang/django'
 
 buildImage() {
   local TAG="$IMAGE:$1"
@@ -15,10 +12,12 @@ buildImage() {
   docker build --quiet --tag "${TAG}" "$1"
 }
 
-for INDEX in "${!VERSIONS[@]}"; do
-  VERSION=${VERSIONS[$INDEX]}
+echo "updating base image ${BASE_IMAGE} ..."
+docker pull "$BASE_IMAGE"
+
+for VERSION in "${VERSIONS[@]}"; do
   buildImage "${VERSION}"
 done
 
-echo "tagging image ${IMAGE}:${LATEST} as LATEST ..."
-docker tag "${IMAGE}:${LATEST}" ${IMAGE}
+echo "tagging image ${IMAGE}:${VERSION_FOR_TAG_LATEST} as LATEST ..."
+docker tag "${IMAGE}:${VERSION_FOR_TAG_LATEST}" ${IMAGE}

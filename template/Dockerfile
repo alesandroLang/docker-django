@@ -1,4 +1,4 @@
-FROM python:{{PYTHON_VERSION}}
+FROM {{BASE_IMAGE}}
 
 # add gunicorn user
 # -D = Don't assign a password

@@ -1,4 +1,4 @@
-name: auto-update
+name: create-update-pr
 
 on:
   schedule:

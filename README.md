@@ -2,6 +2,8 @@
 -   latest, 3.0
 -   2.2
 
+More detailed information about the tags can be found in the *Image Update* section.
+
 # About this image
 This image can be used as a starting point to run django applications.
 
@@ -64,6 +66,16 @@ Therefore `apk` must be used to install additional packages:
     RUN apk add --no-cache gcc postgresql-dev musl-dev
     USER $GUNICORN_USER_UID
 
+# Image Update
+
+Once a day the base image is updated, and a new image will be build based on it to pick up updates within the base image.
+
+To simplify the update process when using this image, in addition to the stable tags (e.g. `3.0`), unique tags containing the git
+commit of this repository plus the current date will be created (e.g. `3.0-c68d547-20200529`).
+
+This means that the stable tags always represent the most recent version, whereby the unique tags allow changes in this
+repository, or the base image to be imported in a controlled manner.
+
 # User Feedback
 
 ## Issues
@@ -75,8 +87,13 @@ Please send me a pull request.
 
 # CI
 
-- This image uses the automated build feature of Docker Hub.
-  The image will be build on push to master and stored within the [official docker registry](https://hub.docker.com/r/alang/django).
+The following GitHub workflows do exist:
 
-- A GitHub workflow is used to create pull requests whenever a new version of Django, Gunicorn or pytz is available.
-  Another workflow verifies each commit on master and each pull request by building the docker image.
+- **push-to-docker-registry**
+  Does build the image with an updated base image and store it within the [official docker registry](https://hub.docker.com/r/alang/django).
+
+- **verify**
+  Verifies each commit on master and each pull request by building the docker image.
+
+- **create-update-pr**
+  Create a pull request whenever a new version of Django, Gunicorn or pytz is available.

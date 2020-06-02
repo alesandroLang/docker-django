@@ -21,7 +21,7 @@ buildImage() {
   docker tag "${UNIQUE_TAG}" "${STABLE_TAG}"
 
   if [[ $PUSH_TO_REGISTRY -eq 1 ]]; then
-    echo -e "\npushing image ${STABLE_TAG} / ${UNIQUE_TAG} to registry ..."
+    echo -e "\npushing image ${STABLE_TAG} + ${UNIQUE_TAG} to registry ..."
     docker push "${UNIQUE_TAG}"
     docker push "${STABLE_TAG}"
   fi
@@ -34,10 +34,10 @@ for VERSION in "${VERSIONS[@]}"; do
   buildImage "$VERSION"
 done
 
-echo -e "\ntagging image ${IMAGE}:${VERSION_FOR_TAG_LATEST} as LATEST ..."
-docker tag "${IMAGE}:${VERSION_FOR_TAG_LATEST}" "$IMAGE:LATEST"
+echo -e "\ntagging image ${IMAGE}:${VERSION_FOR_TAG_LATEST} as latest ..."
+docker tag "${IMAGE}:${VERSION_FOR_TAG_LATEST}" "$IMAGE:latest"
 
 if [[ $PUSH_TO_REGISTRY -eq 1 ]]; then
-  echo -e "\npushing image ${IMAGE}:${VERSION_FOR_TAG_LATEST} / $IMAGE:LATEST to registry ..."
-  docker push "$IMAGE:LATEST"
+  echo -e "\npushing image ${IMAGE}:${VERSION_FOR_TAG_LATEST} + $IMAGE:latest to registry ..."
+  docker push "$IMAGE:latest"
 fi

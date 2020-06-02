@@ -1,3 +1,5 @@
+![push-to-docker-registry](https://github.com/alesandroLang/docker-django/workflows/push-to-docker-registry/badge.svg)
+
 # Supported tags
 -   latest, 3.0
 -   2.2
@@ -93,7 +95,7 @@ The following GitHub workflows do exist:
   Does build the image with an updated base image and store it within the [official docker registry](https://hub.docker.com/r/alang/django).
 
 - **verify**
-  Verifies each commit on master and each pull request by building the docker image.
+  Verifies each pull request by building the docker image.
 
 - **create-update-pr**
   Create a pull request whenever a new version of Django, Gunicorn or pytz is available.

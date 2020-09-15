@@ -13,7 +13,8 @@ This image can be used as a starting point to run django applications.
 It uses [gunicorn](http://gunicorn.org/) in the latest version to serve the wsgi application.
 The container picks up the wsgi entry point based on the environment variable `DJANGO_APP`.
 Gunicorn uses the port defined by the environment variable `PORT` (default port is `8000`).
-The environment variable `GUNICORN_RELOAD` can be set to `true` to active live reload if a source file does change.
+The environment variable `GUNICORN_RELOAD` can be set to `true` to activate hot reload for python files.
+To support more files, such as HTML templates or CSS, override the gunicorn configuration and use the `reload_extra_files` setting.
 
 Django is already installed within the version specified by the image.
 For example `3.0` will contain the latest django version of `3.0.x`.
@@ -56,7 +57,7 @@ How to execute one off django commands like `makemigrations`:
 
 A custom gunicorn config can be included:
 
-    COPY gunicorn.conf /etc/gunicorn/
+    COPY gunicorn.conf.py /etc/gunicorn/
 
 ## Install System Packages
 

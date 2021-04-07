@@ -1,8 +1,8 @@
 ![push-to-docker-registry](https://github.com/alesandroLang/docker-django/workflows/push-to-docker-registry/badge.svg)
 
 # Supported tags
--   latest, 3.1
--   3.0
+-   latest, 3.2
+-   3.1
 -   2.2
 
 More detailed information about the tags can be found in the *Image Update* section.
@@ -17,7 +17,7 @@ The environment variable `GUNICORN_RELOAD` can be set to `true` to activate hot 
 To support more files, such as HTML templates or CSS, override the gunicorn configuration and use the `reload_extra_files` setting.
 
 Django is already installed within the version specified by the image.
-For example `3.0` will contain the latest django version of `3.0.x`.
+For example `3.2` will contain the latest django version of `3.2.x`.
 The image does also ship with the latest version of `pytz` and `gettext` installed.
 Using the latest supported python version for the corresponding django release.
 

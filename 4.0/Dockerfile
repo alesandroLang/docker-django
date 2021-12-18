@@ -1,4 +1,4 @@
-FROM python:3.9-alpine3.13
+FROM python:3.10-alpine3.15
 
 # add gunicorn user
 # -D = Don't assign a password
@@ -41,14 +41,15 @@ RUN chown -R $GUNICORN_USER_NAME $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $ME
   chgrp -R $GUNICORN_USER_GROUP $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $MEDIA_ROOT && \
   chmod -R 770 $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $MEDIA_ROOT
 
-# install gunicorn, django and pytz
+# install gunicorn & django
 ENV GUNICORN_VERSION=20.1.0
-ENV DJANGO_VERSION=2.2.25
-ENV PYTZ_VERSION=2021.3
+ENV DJANGO_VERSION=4.0
 RUN pip install \
   gunicorn==$GUNICORN_VERSION \
-  django==$DJANGO_VERSION \
-  pytz==$PYTZ_VERSION
+  django==$DJANGO_VERSION
+
+# install pytz for Django 3.x
+RUN if [[ "$DJANGO_VERSION" == 3.* ]]; then pip install pytz==2021.3; fi
 
 # switch to non-root user
 USER $GUNICORN_USER_UID

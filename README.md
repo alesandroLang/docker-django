@@ -1,9 +1,9 @@
 ![push-to-docker-registry](https://github.com/alesandroLang/docker-django/workflows/push-to-docker-registry/badge.svg)
 
 # Supported tags
--   latest, 3.2
--   3.1
--   2.2
+-   latest, 4.0
+-   4.0
+-   3.2
 
 More detailed information about the tags can be found in the *Image Update* section.
 
@@ -18,7 +18,7 @@ To support more files, such as HTML templates or CSS, override the gunicorn conf
 
 Django is already installed within the version specified by the image.
 For example `3.2` will contain the latest django version of `3.2.x`.
-The image does also ship with the latest version of `pytz` and `gettext` installed.
+The image does also ship with `gettext` (and for Django 3.x `pytz`) installed.
 Using the latest supported python version for the corresponding django release.
 
 You can use volumes to access generated static and user-uploaded files (`/var/www/static` and `/var/www/media`).

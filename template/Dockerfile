@@ -41,14 +41,15 @@ RUN chown -R $GUNICORN_USER_NAME $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $ME
   chgrp -R $GUNICORN_USER_GROUP $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $MEDIA_ROOT && \
   chmod -R 770 $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $MEDIA_ROOT
 
-# install gunicorn, django and pytz
+# install gunicorn & django
 ENV GUNICORN_VERSION={{GUNICORN_VERSION}}
 ENV DJANGO_VERSION={{DJANGO_VERSION}}
-ENV PYTZ_VERSION={{PYTZ_VERSION}}
 RUN pip install \
   gunicorn==$GUNICORN_VERSION \
-  django==$DJANGO_VERSION \
-  pytz==$PYTZ_VERSION
+  django==$DJANGO_VERSION
+
+# install pytz for Django 3.x
+RUN if [[ "$DJANGO_VERSION" == 3.* ]]; then pip install pytz=={{PYTZ_VERSION}}; fi
 
 # switch to non-root user
 USER $GUNICORN_USER_UID

@@ -1,7 +1,8 @@
 ![push-to-docker-registry](https://github.com/alesandroLang/docker-django/workflows/push-to-docker-registry/badge.svg)
 
 # Supported tags
--   latest, 4.0
+-   latest, 4.1
+-   4.1
 -   4.0
 -   3.2
 

@@ -1,4 +1,4 @@
-FROM python:3.10-alpine
+FROM python:3.11-alpine
 
 # add gunicorn user
 # -D = Don't assign a password
@@ -43,7 +43,7 @@ RUN chown -R $GUNICORN_USER_NAME $GUNICORN_CONFIG_ROOT $WORKDIR $STATIC_ROOT $ME
 
 # install gunicorn & django
 ENV GUNICORN_VERSION=20.1.0
-ENV DJANGO_VERSION=4.0.10
+ENV DJANGO_VERSION=4.2.2
 RUN pip install \
   gunicorn==$GUNICORN_VERSION \
   django==$DJANGO_VERSION

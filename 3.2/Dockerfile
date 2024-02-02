@@ -49,7 +49,7 @@ RUN pip install \
   django==$DJANGO_VERSION
 
 # install pytz for Django 3.x
-RUN if [[ "$DJANGO_VERSION" == 3.* ]]; then pip install pytz==2023.4; fi
+RUN if [[ "$DJANGO_VERSION" == 3.* ]]; then pip install pytz==2024.1; fi
 
 # switch to non-root user
 USER $GUNICORN_USER_UID
